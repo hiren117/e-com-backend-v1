@@ -65,7 +65,9 @@ public class AuthController {
         String token = jwtProvider.generateToken(authentication);
         // now we have to return authRespose to frontend so make class for that
 
-        AuthResponse authResponse = new AuthResponse(token,"SignUp successful");
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setJwt(token);
+        authResponse.setMessage("signup successful");
 
 //        return ResponseEntity.ok(authResponse);
         return new ResponseEntity<AuthResponse>(authResponse,HttpStatus.CREATED);
@@ -82,8 +84,9 @@ public class AuthController {
         String token = jwtProvider.generateToken(authentication);
         // now we have to return authRespose to frontend so make class for that
 
-        AuthResponse authResponse = new AuthResponse(token,"Login successful");
-
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setJwt(token);
+        authResponse.setMessage("signin successful");
 //        return ResponseEntity.ok(authResponse);
         return new ResponseEntity<AuthResponse>(authResponse,HttpStatus.CREATED);
     }
