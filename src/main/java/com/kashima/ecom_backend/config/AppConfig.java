@@ -21,7 +21,7 @@ import java.util.List;
 
 @Configuration
 public class AppConfig {
-
+// login and signup are working perfectly
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.sessionManagement(
