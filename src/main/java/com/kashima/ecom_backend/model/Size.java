@@ -1,6 +1,7 @@
 package com.kashima.ecom_backend.model;
 
 // this is not an entity ,, we have made it embeded
+
 public class Size {
 
     private String name; // meaning M,L,XL,S etc..
