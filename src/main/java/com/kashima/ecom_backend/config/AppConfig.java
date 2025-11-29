@@ -28,28 +28,11 @@ public class AppConfig {
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
 
-                .authorizeHttpRequests(Authorize->Authorize.requestMatchers("/api/**")
+                .authorizeHttpRequests(Authorize->Authorize.requestMatchers("/asi/**")
                         .authenticated().anyRequest().permitAll())
                 .addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)
                 .csrf(csrf ->csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()));
-//                .cors().configurationSource(new CorsConfigurationSource() {
-//                    @Override
-//                    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-//                        CorsConfiguration cfg = new CorsConfiguration();
-//                        cfg.setAllowedOrigins(Arrays.asList(
-//                                "http://localhost:5173",  // react our frontend
-//                                "http://localhost:4200"  // angular if we build it then
-//                        ));
-//                        cfg.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
-//                        cfg.setAllowCredentials(true);
-//                        cfg.setAllowedHeaders(Arrays.asList("*"));
-//                        cfg.setExposedHeaders(Arrays.asList("Authorization")); // for now we want to pass our token
-//                        cfg.setMaxAge(3600L);
-//                        return cfg;
-//                    }
-//                })
-//                .and().httpBasic().and().formLogin();
          return http.build();
     }
     @Bean

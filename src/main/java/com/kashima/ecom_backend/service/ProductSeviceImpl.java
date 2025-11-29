@@ -105,6 +105,15 @@ public class ProductSeviceImpl implements ProductService {
         if(product.getQuantity()!= 0){
             oldProduct.setQuantity(product.getQuantity());
         }
+        oldProduct.setTitle(product.getTitle());
+        oldProduct.setBrand(product.getBrand());
+        oldProduct.setDescription(product.getDescription());
+        oldProduct.setPrice(product.getPrice());
+        oldProduct.setDiscountedPrice(product.getDiscountedPrice());
+        oldProduct.setDiscountPercent(product.getDiscountPercent());
+        oldProduct.setColor(product.getColor());
+        oldProduct.setImageUrl(product.getImageUrl());
+        oldProduct.setSizes(product.getSizes());
         return productRepository.save(oldProduct);
     }
 
@@ -158,5 +167,11 @@ public class ProductSeviceImpl implements ProductService {
 
         Page<Product> filteredProducts = new PageImpl<>(pageContents, pageable, products.size());
         return filteredProducts;
+    }
+
+    @Override
+    public List<Product> findAllProducts() throws ProductException {
+        List<Product> products = productRepository.findAll();
+        return products;
     }
 }

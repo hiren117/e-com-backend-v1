@@ -24,5 +24,5 @@ public interface ProductService {
                                         Integer pageNumber,Integer pageSize) throws ProductException;
 
 
-
+    public List<Product> findAllProducts() throws ProductException;
 }
