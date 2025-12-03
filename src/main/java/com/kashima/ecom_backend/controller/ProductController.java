@@ -21,16 +21,16 @@ public class ProductController {
 
     // localhost:1090/api/products?category=shirt&color=red&size=M....
     @GetMapping("/products")
-    public ResponseEntity<Page<Product>> findProductByCategoryHandler(@RequestParam String category,
-                                                                      @RequestParam List<String> colors,
-                                                                      @RequestParam List<String> sizes,
-                                                                      @RequestParam Integer minPrice,
-                                                                      @RequestParam Integer maxPrice,
-                                                                      @RequestParam Integer minDiscount,
-                                                                      @RequestParam String sort,
-                                                                      @RequestParam String stock,
-                                                                      @RequestParam Integer pageNumber,
-                                                                      @RequestParam Integer pageSize) throws ProductException {
+    public ResponseEntity<Page<Product>> findProductByCategoryHandler(@RequestParam(required = false) String category,
+                                                                      @RequestParam(required = false) List<String> colors,
+                                                                      @RequestParam(required = false) List<String> sizes,
+                                                                      @RequestParam(required = false) Integer minPrice,
+                                                                      @RequestParam(required = false) Integer maxPrice,
+                                                                      @RequestParam(required = false) Integer minDiscount,
+                                                                      @RequestParam(required = false) String sort,
+                                                                      @RequestParam(required = false) String stock,
+                                                                      @RequestParam(defaultValue = "0") Integer pageNumber,
+                                                                      @RequestParam(defaultValue = "10") Integer pageSize) throws ProductException {
         Page<Product> response = productService.getAllProducts(category,colors,sizes,minPrice,maxPrice,
                 minDiscount,sort,stock,pageNumber,pageSize);
         System.out.println("complete products list");
