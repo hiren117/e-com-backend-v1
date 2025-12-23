@@ -1,19 +1,33 @@
 package com.kashima.ecom_backend.service;
 
 import com.kashima.ecom_backend.exception.OrderException;
+import com.kashima.ecom_backend.model.Address;
 import com.kashima.ecom_backend.model.Order;
+import com.kashima.ecom_backend.model.User;
+import com.kashima.ecom_backend.repository.CartRepository;
 
 import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
+
+    private CartRepository cartRepository;
+    private CartService cartService;
+    private ProductService productService;
+
+    public OrderServiceImpl(CartRepository cartRepository, CartService cartService, ProductService productService) {
+        this.cartRepository = cartRepository;
+        this.cartService = cartService;
+        this.productService = productService;
+    }
+
     @Override
-    public Order createOrder(Order order) throws OrderException {
+    public Order createOrder(User user, Address shippingAddress) throws OrderException {
 
         return null;
     }
 
     @Override
-    public Order findOrderById(String id) throws OrderException {
+    public Order findOrderById(Long orderId) throws OrderException {
         return null;
     }
 
