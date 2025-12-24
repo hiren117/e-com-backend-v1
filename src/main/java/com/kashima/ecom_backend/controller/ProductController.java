@@ -38,8 +38,8 @@ public class ProductController {
     }
 
     @GetMapping("/products/id/{productId}")
-    public ResponseEntity<Product> getProductByIdHandler(@PathVariable Long productId) throws ProductException {
-
+    public ResponseEntity<Product> findProductByIdHandler(@PathVariable Long productId) throws ProductException {
+                                // get nu find kryu
         Product product = productService.findProductById(productId);
 
         return new ResponseEntity<>(product, HttpStatus.ACCEPTED);

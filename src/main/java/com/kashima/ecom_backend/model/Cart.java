@@ -23,7 +23,7 @@ public class Cart {
     private double totalPrice;
 
     @Column(name = "total_item")
-    private double totalItem;
+    private int totalItem;
 
     private int totalDiscountedPrice;
 
@@ -32,7 +32,7 @@ public class Cart {
     public Cart() {
 
     }
-    public Cart(Long id, User user, Set<CartItem> cartItems, double totalPrice, double totalItem, int totalDiscountedPrice, int discount) {
+    public Cart(Long id, User user, Set<CartItem> cartItems, double totalPrice, int totalItem, int totalDiscountedPrice, int discount) {
         this.id = id;
         this.user = user;
         this.cartItems = cartItems;
@@ -74,11 +74,11 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
-    public double getTotalItem() {
+    public int getTotalItem() {
         return totalItem;
     }
 
-    public void setTotalItem(double totalItem) {
+    public void setTotalItem(int totalItem) {
         this.totalItem = totalItem;
     }
 
