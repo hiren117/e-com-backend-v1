@@ -3,12 +3,14 @@ package com.kashima.ecom_backend.service;
 import com.kashima.ecom_backend.exception.OrderException;
 import com.kashima.ecom_backend.model.*;
 import com.kashima.ecom_backend.repository.*;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
     private CartService cartService;
