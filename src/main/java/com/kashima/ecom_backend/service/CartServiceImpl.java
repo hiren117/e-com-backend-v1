@@ -5,6 +5,7 @@ import com.kashima.ecom_backend.model.Cart;
 import com.kashima.ecom_backend.model.CartItem;
 import com.kashima.ecom_backend.model.Product;
 import com.kashima.ecom_backend.model.User;
+import com.kashima.ecom_backend.repository.CartItemRepository;
 import com.kashima.ecom_backend.repository.CartRepository;
 import com.kashima.ecom_backend.request.AddItemRequest;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,13 @@ public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
     private CartItemService cartItemService;
     private ProductService productService;
+    private CartItemRepository cartItemRepository;
 
-    public CartServiceImpl(CartRepository cartRepository, CartItemService cartItemService, ProductService productService) {
+    public CartServiceImpl(CartRepository cartRepository, CartItemService cartItemService, ProductService productService, CartItemRepository cartItemRepository) {
         this.cartRepository = cartRepository;
         this.cartItemService = cartItemService;
         this.productService = productService;
+        this.cartItemRepository = cartItemRepository;
     }
 
     @Override
@@ -50,6 +53,12 @@ public class CartServiceImpl implements CartService {
 
             CartItem createdCartItem = cartItemService.createCartItem(cartItem);
             cart.getCartItems().add(createdCartItem);
+        }else{
+            // if item already exist in cart
+            isPresent.setQuantity(isPresent.getQuantity() + req.getQuantity());
+            isPresent.setPrice(isPresent.getPrice() + req.getQuantity()*product.getDiscountedPrice());
+
+            cartItemRepository.save(isPresent);
         }
 
         return "Item added successfully";
