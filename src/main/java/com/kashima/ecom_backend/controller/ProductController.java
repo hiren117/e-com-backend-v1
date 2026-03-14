@@ -31,10 +31,10 @@ public class ProductController {
                                                                       @RequestParam(required = false) String stock,
                                                                       @RequestParam(defaultValue = "0") Integer pageNumber,
                                                                       @RequestParam(defaultValue = "10") Integer pageSize) throws ProductException {
-        Page<Product> response = productService.getAllProducts(category,colors,sizes,minPrice,maxPrice,
+        Page<Product> responsePage = productService.getAllProducts(category,colors,sizes,minPrice,maxPrice,
                 minDiscount,sort,stock,pageNumber,pageSize);
         System.out.println("complete products list");
-        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(responsePage, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/products/id/{productId}")
