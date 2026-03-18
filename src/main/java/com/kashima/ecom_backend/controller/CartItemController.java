@@ -36,7 +36,7 @@ public class CartItemController {
 
     }
 
-    @PutMapping("/{cartItemId}/update")
+    @PutMapping("/{cartItemId}")
     public ResponseEntity<ApiResponse> updateCartItem(@PathVariable Long cartItemId,
                                                       @RequestBody CartItem cartItem,
                                                       @RequestHeader ("Authorization") String jwt) throws UserException, CartItemException {

@@ -6,6 +6,7 @@ import com.kashima.ecom_backend.model.User;
 import com.kashima.ecom_backend.repository.UserRepository;
 import com.kashima.ecom_backend.request.LoginRequest;
 import com.kashima.ecom_backend.response.AuthResponse;
+import com.kashima.ecom_backend.service.CartService;
 import com.kashima.ecom_backend.service.CustomUserServiceImplementation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +29,15 @@ public class AuthController {
     private JwtProvider jwtProvider;
     private PasswordEncoder passwordEncoder;
     private CustomUserServiceImplementation  customUserServiceImplementation;
+    private CartService cartService;
 
     public AuthController(UserRepository userRepository,CustomUserServiceImplementation  customUserServiceImplementation
-                            , JwtProvider jwtProvider, PasswordEncoder passwordEncoder) {
+                            , JwtProvider jwtProvider, PasswordEncoder passwordEncoder,CartService cartService) {
         this.userRepository = userRepository;
         this.customUserServiceImplementation = customUserServiceImplementation;
         this.jwtProvider = jwtProvider;
         this.passwordEncoder = passwordEncoder;
+        this.cartService = cartService;
     }
 
     @PostMapping("/signup")
@@ -65,6 +68,7 @@ public class AuthController {
         String token = jwtProvider.generateToken(authentication);
         // now we have to return authRespose to frontend so make class for that
 
+        cartService.createCart(savedUser);
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(token);
         authResponse.setMessage("signup successful");

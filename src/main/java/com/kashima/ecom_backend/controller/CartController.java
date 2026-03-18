@@ -25,15 +25,7 @@ public class CartController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/create")
-    public ResponseEntity<ApiResponse> createCart(@RequestHeader("Authorization") String jwt) throws UserException, CartItemException {
-        User user = userService.findUserProfileByJwt(jwt);
-        cartService.createCart(user);
-        ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setMessage("Cart created successfully");
-        apiResponse.setStatus(true);
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
-    }
+
     @GetMapping("/")
     // @Operation(description = "find cart by userid")
     public ResponseEntity<Cart> fidnUserCart(@RequestHeader("Authorization") String jwt) throws UserException {
