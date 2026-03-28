@@ -42,6 +42,12 @@ public class AdminProductController {
         List<Product> products = productService.findAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
+
+    @PostMapping("/recent")
+    public ResponseEntity<List<Product>> RecentlyAddedProducts() throws ProductException {
+        List<Product> p = productService.recentlyAddedProdudcts();
+        return new ResponseEntity<>(p, HttpStatus.OK);
+    }
     @PutMapping("/{productId}/update")
     public ResponseEntity<Product> updateProduct(@PathVariable Long productId,@RequestBody Product req) throws ProductException {
         Product updatedProduct =  productService.updateProduct(productId, req);

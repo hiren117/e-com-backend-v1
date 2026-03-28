@@ -174,4 +174,10 @@ public class ProductSeviceImpl implements ProductService {
         List<Product> products = productRepository.findAll();
         return products;
     }
+
+    @Override
+    public List<Product> recentlyAddedProdudcts() {
+
+        return productRepository.findTop10ByOrderByCreatedAtDesc();
+    }
 }

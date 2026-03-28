@@ -25,4 +25,6 @@ public interface ProductService {
 
 
     public List<Product> findAllProducts() throws ProductException;
+
+    public List<Product> recentlyAddedProdudcts();
 }
