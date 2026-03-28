@@ -6,6 +6,7 @@ import com.kashima.ecom_backend.model.User;
 import com.kashima.ecom_backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +36,11 @@ public class UserServiceImpl implements UserService {
             return user;
         }
         throw new UserException("User not found with email: " + email);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        List<User> users = userRepository.findAllByOrderByCreatedAtDesc();
+        return users;
     }
 }
