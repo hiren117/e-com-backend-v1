@@ -53,9 +53,7 @@ public class AdminOrderController {
     @DeleteMapping("/{orderId}/delete")
     public ResponseEntity<ApiResponse> deleteOrderHandler(@PathVariable Long orderId) throws OrderException {
         orderService.deleteOrder(orderId);
-        ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setMessage("Order has been deleted");
-        apiResponse.setStatus(true);
+        ApiResponse apiResponse = new ApiResponse("Order has been deleted",true);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 }

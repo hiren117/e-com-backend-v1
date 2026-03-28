@@ -61,9 +61,8 @@ public class AdminProductController {
         for(int j=0;j<req.length;j++){
             productService.createProduct(req[j]);
         }
-        ApiResponse res = new ApiResponse();
-        res.setMessage("Total "+ req.length + " Products created successfully");
-        res.setStatus(true);
+        ApiResponse res = new ApiResponse("Total "+ req.length + " Products created successfully",true);
+
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
